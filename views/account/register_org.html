@@ -1,0 +1,15 @@
+{{
+left_sidebar_enabled=False
+right_sidebar_enabled=True
+}}
+{{extend "layout.html"}}
+
+{{=H1(T("Register My School"))}}
+
+{{=form}}
+
+{{block left_sidebar}}
+{{end}}
+{{block right_sidebar}}
+{{=A(T("Register myself"), _href="/%s/account/register_user"%(request.application))}}
+{{end}}

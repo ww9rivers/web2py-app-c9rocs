@@ -1,0 +1,33 @@
+{{
+left_sidebar_enabled=True
+right_sidebar_enabled=True
+}}
+{{extend "layout.html"}}
+
+{{=H1(T("Welcome to %s!" % response.appname))}}
+
+<p>
+{{=T("Brought to you by ")}}{{=A("9Rivers.com",_href="http://9Rivers.com")}}{{=T(", %s is an open source software, built to help with Chinese School operations, for students, teachers, parents and administrators.") % (response.appname)}}
+</p>
+
+<p>{{=T("This software is free. You may use it here; download it, install it and run it on the Google App Engine service, or on your own server. All it needs is ")}}{{=A("Python",
+_href='http://python.org/')}}{{=T('.')}}
+</p>
+
+{{=P(T("Register your organization and give the software a try. It's free!"))}}
+
+{{=P(T("If your school is already registered, you may register yourself as a student, or be assigned a role such as a parent or a teacher by a member of the school administrative team."))}}
+
+{{=P(T("All you need is an account with AOL, Google or Yahoo, or an OpenID."))}}
+
+{{if type(schools) == list and len(schools) > 0:}}
+  {{=H2(T("Current Registered School"))}}
+  <ul style="margin-left: 4em;">
+  {{for school in schools:}}
+  <li>{{=A(school['org'],_href=request.env.path_info+"?id="+str(school['id']))}}, {{=school['city']}}, {{=school['st']}}, {{=school['zip']}}</li>
+  {{pass}}
+  </ul>
+{{pass}}
+
+{{block left_sidebar}}{{=left_sidebar}}{{end}}
+{{block right_sidebar}}{{=right_sidebar}}{{end}}
